@@ -1,0 +1,49 @@
+# Генератор паролей
+print("Генератор паролей")
+import random
+
+def chars():
+    digits = '0123456789'
+    lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
+    uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    punctuation = '!#$%&*+-=?@^_.'
+    
+    print('Включать ли цифры 0123456789? Да/Нет')
+    if input() == 'Да':
+        char = digits
+    print('Включать ли прописные буквы ABCDEFGHIJKLMNOPQRSTUVWXYZ? Да/Нет')
+    if input() == 'Да':
+        char += uppercase_letters
+    print('Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz? Да/Нет')
+    if input() == 'Да':
+        char += lowercase_letters   
+    print('Включать ли символы !#$%&*+-=?@^_? Да/Нет')
+    if input() == 'Да':
+        char += punctuation
+    print('Исключить ли неоднозначные символы il1Lo0O? Да/Нет')
+    if input() == 'Да':
+        char = char.replace('i','')
+        char = char.replace('l','')
+        char = char.replace('1','')
+        char = char.replace('L','')
+        char = char.replace('o','')
+        char = char.replace('O','')
+        char = char.replace('0','')
+    return char   
+
+def generate_password(length, chars):
+    password = ''
+    for i in range(length):
+        password += random.choice(chars)
+    return password
+
+# Основная программа
+print('Сколько паролей надо сгенерировать?')
+n = int(input()) # количество паролей
+print('Сколько символов в одном пароле?')
+length = int(input()) # количество символов в 1 пароле
+chars = chars()
+for i in range(n):
+    password = generate_password(length, chars)
+    print(f'Пароль № {i + 1} -', password)
+print("Конец")
