@@ -1,0 +1,46 @@
+# Реализация игры угадайка в диапазоне чисел [1,100]
+print("Добро пожаловать в числовую угадайку")
+import random
+
+def is_valid(a):    # Проверка на корректность введенного числа
+    if a.isdigit() and 1 <= int(a) <= 100:
+        return True
+    else:
+        return False
+
+def game():    # Тело игры
+    x = random.randint(1, 100)
+    count = 0
+    print('Какое число от 1 до 100 загадано?')
+    while True:
+        count += 1
+        a = input()
+        if not is_valid(a):
+            print('А может быть все-таки введем целое число от 1 до 100?')
+            continue
+        
+        a = int(a)
+        
+        if a < x: 
+            print('Ваше число меньше загаданного, попробуйте еще разок')
+            continue
+        elif a > x: 
+            print('Ваше число больше загаданного, попробуйте еще разок')
+            continue
+        else:
+            print('Вы угадали, поздравляем!')
+            print('Количество попыток =', count)
+            break
+    print('Сыграем еще раз? Введи "Да или Нет"')
+    while True:
+        ans = input()
+        if ans != 'Да' and ans != 'Нет':
+            print('Нормально ответь')
+            continue
+        if ans == 'Да':
+            game()
+            continue
+        if ans == 'Нет':
+            print('Ну как знаешь, пока)')
+            break
+game()
