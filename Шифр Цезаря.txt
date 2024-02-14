@@ -1,0 +1,103 @@
+def code_caesar_ru(text, shift):
+    print("Кодировка Цезаря на русском")
+    cipher = ''
+    for c in text:
+        if ord(c) in range(1040, 1072):
+            num = ord(c) + shift
+            if num > 1071:
+                num -= 32
+            cipher += chr(num)
+        elif ord(c) in range(1072, 1104):
+            num = ord(c) + shift
+            if num > 1103:
+                num -= 32
+            cipher += chr(num)
+    
+        else: 
+            cipher += c
+    print('исходный текст:', text)
+    print('зашифрованный текст:', cipher)
+
+def decode_caesar_ru(text, shift):
+    print("Расшифровка шифра Цезаря на русском")
+    cipher = ''
+    for c in text:
+        if ord(c) in range(1040, 1072):
+            num = ord(c) - shift
+            if num < 1040:
+                num += 32
+            cipher += chr(num)
+        elif ord(c) in range(1072, 1104):
+            num = ord(c) - shift
+            if num < 1072:
+                num += 32
+            cipher += chr(num)
+    
+        else: 
+            cipher += c
+    print('исходный текст:', text)
+    print('зашифрованный текст:', cipher)
+    
+def code_caesar_en(text, shift):   
+    print("Кодировка Цезаря на английском")
+    cipher = ''
+    for c in text:
+        if ord(c) in range(65, 91):
+            num = ord(c) + shift
+            if num > 90:
+                num -= 26
+            cipher += chr(num)
+        elif ord(c) in range(97, 123):
+            num = ord(c) + shift
+            if num > 122:
+                num -= 26
+            cipher += chr(num)
+        else: 
+            cipher += c
+    print(text)
+    print(cipher)
+    
+def decode_caesar_en(text, shift):   
+    print("Расшифровка шифра Цезаря на английском")
+    cipher = ''
+    for c in text:  
+        if ord(c) in range(65, 91):
+            num = ord(c) - shift
+            if num < 65:
+                num += 26
+            cipher += chr(num)
+        elif ord(c) in range(97, 123):
+            num = ord(c) - shift
+            if num < 97:
+                num += 26
+            cipher += chr(num)
+        else: 
+            cipher += c
+    print(text)
+    print(cipher)
+ 
+def main():
+    vector = input("Необходимо зашифровать или расшифровать текст? Ответьте: Зашифровать/Расшифровать\n")
+    lang = input("На каком языке текст? Ответьте: en/ru\n")
+    text = input("Введите текст:\n")
+    shift = input("Введите шаг сдвига:\n")
+    shift = int(shift)
+    if vector == 'Зашифровать':
+        if lang == 'ru':
+            code_caesar_ru(text, shift)
+        elif lang == 'en':
+            code_caesar_en(text, shift)
+        else: 
+            print('Что-то не то  с объявлением')
+    elif vector == 'Расшифровать':
+        if lang == 'ru':
+            decode_caesar_ru(text, shift)
+        elif lang == 'en':
+            decode_caesar_en(text, shift)
+        else: 
+            print('Что-то не то  с объявлением')        
+    else:
+        print('Что-то не то  с объявлением')        
+    print('До скорых встреч!')    
+    
+main() 
